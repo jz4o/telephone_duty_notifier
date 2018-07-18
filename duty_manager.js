@@ -44,6 +44,22 @@ function noticeDutyPerson(date) {
  * @param {date} date 該当日
  */
 function getOriginalDutyPerson(date) {
+  switch(shiftSystem){
+  case shiftSystems['daily']:
+    return getDailyDutyPerson(date);
+  case shiftSystems['weekly']:
+    return getWeeklyDutyPerson(date);
+  default:
+    return null;
+  }
+}
+
+/**
+ * 該当日の本来の担当者(日番制)を返却
+ *
+ * @param {date} date 該当日
+ */
+function getDailyDutyPerson(date) {
   var elapseDays = getDiffDays(FIRST_MONDAY, date);
   var elapseWeeks = Math.floor(elapseDays / 7);
   var elapseWeeksModulus = elapseDays % 7;
@@ -51,6 +67,18 @@ function getOriginalDutyPerson(date) {
   var elapseDutyDays = elapseWeeks * 5 + elapseWeeksModulus;
 
   return persons[elapseDutyDays % persons.length];
+}
+
+/**
+ * 該当日の本来の担当者(週番制)を返却
+ *
+ * @param {date} date 該当日
+ */
+function getWeeklyDutyPerson(date) {
+  var elapseDays = getDiffDays(FIRST_MONDAY, date);
+  var elapseWeeks = Math.floor(elapseDays / 7);
+
+  return persons[elapseWeeks % persons.length];
 }
 
 /**
