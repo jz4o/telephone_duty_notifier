@@ -33,8 +33,9 @@ var sheetColumns = {
  * 当番制度
  */
 var shiftSystems =　{
-  'daily' : '日番制',
-  'weekly': '週番制'
+  'daily'    : '日番制',
+  'weekly'   : '週番制',
+  'dayOfWeek': '曜日制'
 };
 var shiftSystem = sheet['duties'].getRange(1, 2).getValue();
 

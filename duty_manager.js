@@ -49,6 +49,8 @@ function getOriginalDutyPerson(date) {
     return getDailyDutyPerson(date);
   case shiftSystems['weekly']:
     return getWeeklyDutyPerson(date);
+  case shiftSystems['dayOfWeek']:
+    return getDayOfWeekDutyPerson(date);
   default:
     return null;
   }
@@ -79,6 +81,17 @@ function getWeeklyDutyPerson(date) {
   var elapseWeeks = Math.floor(elapseDays / 7);
 
   return persons[elapseWeeks % persons.length];
+}
+
+/**
+ * 該当日の本来の担当者(曜日制)を返却
+ *
+ * 担当者のいない曜日は週番制を採用
+ *
+ * @param {date} date 該当日
+ */
+function getDayOfWeekDutyPerson(date) {
+  return persons[date.getDay() - 1] || getWeeklyDutyPerson(date);
 }
 
 /**
