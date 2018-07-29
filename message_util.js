@@ -48,7 +48,7 @@ function postChangeDutyPerson(successMessage, errorMessage) {
  * @param {string} beforeDutyPerson 交代前の担当者
  * @param {string} afterDutyPerson  交代後の担当者
  *
- * @return {string] 交代通知メッセージ
+ * @return {string} 交代通知メッセージ
  */
 function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
   return(
