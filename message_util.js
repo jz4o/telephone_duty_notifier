@@ -63,3 +63,20 @@ function postInvalidDate() {
   postMessage('入力された日付が正しくありません');
 }
 
+/**
+ * ヘルプメッセージを投稿します.
+ *
+ * @param {string} trigger トリガーメッセージ
+ */
+function postHelpMessage(trigger) {
+  var commands = [
+    trigger + ' set duty 担当者A 2000/01/01',
+    trigger + ' help'
+  ];
+  postMessage(
+    '`' + trigger + "`の使用方法が必要ですか？\n" +
+    '`' + trigger + "`は電話当番の通知を行うBotです。使用例は以下の通りです。\n>>>\n" +
+    commands.join("\n")
+  );
+}
+

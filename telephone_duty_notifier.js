@@ -38,6 +38,8 @@ function relayRequest(e) {
 
   if(action == 'set' && type == 'duty') {
     setChangeDuty(person, date);
+  }else{
+    postHelpMessage(trigger);
   }
 }
 
