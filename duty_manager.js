@@ -158,13 +158,13 @@ function setChangeDuty(e) {
  */
 function editChangeDutyPerson(date, person) {
   var beforeDutyPerson = changePersons[date];
-  changePerson[date] = person;
+  changePersons[date] = person;
 
   var ranges = sheet['changes'].getDataRange();
   var values = ranges.getValues();
   for(var i=0; i<values.length; i++){
     if(values[i][sheetColumns['changes']['date']] == getYmdString(date)){
-      ranges.getCell(i+1, sheetColumns['changes']['person']).setValue(person);
+      ranges.getCell(i+1, sheetColumns['changes']['person']+1).setValue(person);
       break;
     }
   }
@@ -178,7 +178,7 @@ function editChangeDutyPerson(date, person) {
  */
 function addChangeDutyPerson(date, person) {
   changePersons[date] = person;
-  sheet['changes'].appendRow([date, person]);
+  sheet['changes'].appendRow(["'" + getYmdString(date), person]);
 }
 
 /**
