@@ -24,6 +24,20 @@ function doPost(e) {
     return;
   }
 
-  setChangeDuty(e);
+  relayRequest(e['parameter']);
+}
+
+/**
+ * POSTリクエストに応じた関数をコールします
+ *
+ * @param {hash} e リクエストパラメータ
+ */
+function relayRequest(e) {
+  var trigger, action, type, person, date;
+  [trigger, action, type, person, date] = e['text'].split(' ');
+
+  if(action == 'set' && type == 'duty') {
+    setChangeDuty(person, date);
+  }
 }
 

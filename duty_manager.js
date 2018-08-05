@@ -106,48 +106,43 @@ function getChangeDutyPerson(date) {
 /**
  * 担当者の変更を設定
  *
- * @param {hash} e パラメータ
+ * @param {string} person 担当者
+ * @param {string} date   日付文字列
  */
-function setChangeDuty(e) {
-  // 通知メッセージ
-  var successMessage = '';
-  var errorMessage   = '';
-
-  // パラメータ調整
-  var text = e['parameter']['text'];
-  var triggerWord = e['parameter']['trigger_word'];
-  text = text.replace(triggerWord + "\n", '');
-  var lines = text.split("\n");
-
-  for(var i=0; i<lines.length; i++){
-    // 構文チェック
-    var regex = /(\d{4}\/\d{1,2}\/\d{1,2})[:：](.+)/.exec(lines[i]);
-    if(regex){
-      // 日付チェック
-      var date = regex[1].split('/');
-      if(!isValid(date[0], date[1], date[2])){
-        errorMessage += line + "\n";
-        continue;
-      }
-
-      // 交代設定
-      date = new Date(Date.parse(regex[1]));
-      if(getChangeDutyPerson(date)){
-        var beforeDutyPerson = getChangeDutyPerson(date);
-        successMessage += getChangeDutyPersonMessage(date, beforeDutyPerson, regex[2]) + "\n";
-        editChangeDutyPerson(date, regex[2]);
-      }else{
-        var beforeDutyPerson = getOriginalDutyPerson(date);
-        successMessage += getChangeDutyPersonMessage(date, beforeDutyPerson, regex[2]) + "\n";
-        addChangeDutyPerson(date, regex[2]);
-      }
-    }else{
-      errorMessage += lines[i] + "\n";
-    }
+function setChangeDuty(person, date) {
+  // 引数チェック
+  if(!person || !date){
+    postTooFewArgumentsError();
+    return;
   }
 
-  // 交代設定通知
-  postChangeDutyPerson(successMessage, errorMessage);
+  // 日付チェック
+  if(!/\d{4}\/\d{1,2}\/\d{1,2}/.test(date)){
+    postInvalidDate();
+    return;
+  }
+  var year, month, day;
+  [year, month, day] = date.split('/');
+  if(!isValid(year, month, day)){
+    postInvalidDate();
+    return;
+  }
+
+  // 交代設定
+  date = new Date(Date.parse(date));
+  if(getChangeDutyPerson(date)){
+    // 交代設定通知
+    var beforeDutyPerson = getChangeDutyPerson(date);
+    postChangeDutyPerson(getChangeDutyPersonMessage(date, beforeDutyPerson, person));
+
+    editChangeDutyPerson(date, person);
+  }else{
+    // 交代設定通知
+    var beforeDutyPerson = getOriginalDutyPerson(date);
+    postChangeDutyPerson(getChangeDutyPersonMessage(date, beforeDutyPerson, person));
+
+    addChangeDutyPerson(date, person);
+  }
 }
 
 /**

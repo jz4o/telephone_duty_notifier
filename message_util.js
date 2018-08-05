@@ -26,19 +26,10 @@ function postDutyPerson(date, person) {
 /**
  * 担当者の交代を投稿します.
  *
- * @param {string} successMessage 交代設定に成功した内容
- * @param {string} errorMessage   交代設定に失敗した内容
+ * @param {string} message 交代設定内容
  */
-function postChangeDutyPerson(successMessage, errorMessage) {
-  var message = '';
-  if(successMessage){
-    message += "■電話当番交代を設定しました\n" + successMessage + "\n";
-  }
-  if(errorMessage) {
-    message += "■電話当番交代の設定に失敗しました\n" + errorMessage;
-  }
-
-  postMessage(message);
+function postChangeDutyPerson(message) {
+  postMessage("■電話当番交代を設定しました\n" + message);
 }
 
 /**
@@ -56,5 +47,19 @@ function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
       + beforeDutyPerson + ' さんから '
       + afterDutyPerson  + ' さんに変更しました'
   );
+}
+
+/**
+ * リクエスト内容不足のメッセージを投稿します.
+ */
+function postTooFewArgumentsError() {
+  postMessage('入力内容が不足しています');
+}
+
+/**
+ * リクエストに含まれる日付が正しくないメッセージを投稿します.
+ */
+function postInvalidDate() {
+  postMessage('入力された日付が正しくありません');
 }
 
