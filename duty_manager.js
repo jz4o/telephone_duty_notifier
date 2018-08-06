@@ -117,13 +117,7 @@ function setChangeDuty(person, date) {
   }
 
   // 日付チェック
-  if(!/\d{4}\/\d{1,2}\/\d{1,2}/.test(date)){
-    postInvalidDate();
-    return;
-  }
-  var year, month, day;
-  [year, month, day] = date.split('/');
-  if(!isValid(year, month, day)){
+  if(!isValidDate(date)){
     postInvalidDate();
     return;
   }

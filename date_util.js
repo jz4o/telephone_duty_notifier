@@ -85,21 +85,27 @@ function isHoliday(date){
 }
 
 /**
- * 受取った年月日が正しいか判定
+ * 受取った日付文字列が正しいか判定
  *
- * @param {number} 年
- * @param {number} 月
- * @param {number} 日
+ * @param {string} dateStr 日付文字列
  *
  * @return {boolean} 正しい：true, 誤り：false
  */
-function isValid(year, month, day){
-  var date = new Date(year, month-1, day);
+function isValidDate(dateStr){
+  // フォーマットチェック
+  if(!/\d{4}\/\d{1,2}\/\d{1,2}/.test(dateStr)){
+    return false;
+  }
 
+  // 存在チェック
+  var year, month, day;
+  [year, month, day] = dateStr.split('/');
+  var date = new Date(year, month-1, day);
   return(
-    date.getFullYear() == year
-    && date.getMonth() == month-1
-    && date.getDate() == day);
+    date.getFullYear() == year &&
+      date.getMonth()  == month-1 &&
+      date.getDate()   == day
+  );
 }
 
 /**
