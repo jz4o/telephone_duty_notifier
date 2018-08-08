@@ -14,6 +14,17 @@ function postMessage(message) {
 }
 
 /**
+ * 担当者一覧を投稿します.
+ */
+function postDutyList() {
+  var message = '現在の担当者は以下の方々です\n'
+  persons.forEach(function(element){
+    message += '> ' + element + '\n'
+  });
+  postMessage(message);
+}
+
+/**
  * 該当日の担当者を投稿します.
  *
  * @param {date}   date   該当日
@@ -71,6 +82,7 @@ function postInvalidDate() {
 function postHelpMessage(trigger) {
   var commands = [
     trigger + ' set duty 担当者A 2000/01/01',
+    trigger + ' list duty',
     trigger + ' help'
   ];
   postMessage(
