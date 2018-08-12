@@ -29,6 +29,35 @@ var changePersons = (function() {
 }());
 
 /**
+ * 担当者を削除
+ *
+ * @param {string} person 担当者
+ */
+function deleteDutyPerson(person) {
+  var isDelete = false;
+  var data = [];
+
+  // データ更新
+  for(var i=persons.length-1; i>=0; i--){
+    if(persons[i] == person){
+      isDelete = true;
+      persons.splice(i, 1);
+
+      data.push(['']);
+    }else{
+      data.unshift([persons[i]]);
+    }
+  }
+
+  // シート更新
+  if(isDelete){
+    sheet['duties'].getRange(2, 1, data.length).setValues(data);
+  }
+
+  postDeleteDutyPerson(person, isDelete);
+}
+
+/**
  * 該当日の担当者を通知
  *
  * @param {date} date 該当日
