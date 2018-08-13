@@ -51,7 +51,8 @@ function deleteDutyPerson(person) {
 
   // シート更新
   if(isDelete){
-    sheet['duties'].getRange(2, 1, data.length).setValues(data);
+    var personColumn = sheetColumns['duties']['person'] + 1;
+    sheet['duties'].getRange(2, personColumn, data.length).setValues(data);
   }
 
   postDeleteDutyPerson(person, isDelete);
