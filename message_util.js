@@ -14,6 +14,19 @@ function postMessage(message) {
 }
 
 /**
+ * 担当者追加のメッセージを投稿します.
+ *
+ * @param {string}  person 担当者
+ * @param {boolean} result 追加の成否
+ */
+function postAddDutyPerson(person, result) {
+  var resultMsg = result ? 'しました。' : 'できませんでした。';
+  postMessage(person + 'を追加' + resultMsg);
+
+  postDutyList();
+}
+
+/**
  * 担当者削除のメッセージを投稿します.
  *
  * @param {string}  person 担当者
@@ -94,6 +107,7 @@ function postInvalidDate() {
  */
 function postHelpMessage(trigger) {
   var commands = [
+    trigger + ' add duty 担当者A',
     trigger + ' delete duty 担当者A',
     trigger + ' set duty 担当者A 2000/01/01',
     trigger + ' list duty',

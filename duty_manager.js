@@ -29,6 +29,21 @@ var changePersons = (function() {
 }());
 
 /**
+ * 担当者を追加
+ *
+ * @param {string} person 担当者
+ */
+function addDutyPerson(person) {
+  var isAdd = persons.indexOf(person) < 0;
+  if(isAdd){
+    persons.push(person);
+    sheet['duties'].appendRow([person]);
+  }
+
+  postAddDutyPerson(person, isAdd);
+}
+
+/**
  * 担当者を削除
  *
  * @param {string} person 担当者

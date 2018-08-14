@@ -38,6 +38,8 @@ function relayRequest(e) {
 
   if(action == 'set' && type == 'duty') {
     setChangeDuty(person, date);
+  }else if(action == 'add' && type == 'duty') {
+    addDutyPerson(person);
   }else if(action == 'delete' && type == 'duty') {
     deleteDutyPerson(person);
   }else if(action == 'list' && type == 'duty') {
