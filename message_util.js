@@ -87,6 +87,33 @@ function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
 }
 
 /**
+ * 当番制度変更のメッセージを投稿します.
+ *
+ * @param {string}  shift  変更後の当番制度
+ * @param {boolean} result 変更の成否
+ */
+function postChangeShiftSystem(shift, result) {
+  if(result){
+    postMessage('当番制度を' + shift + 'に変更しました');
+  }else {
+    postMessage('当番制度を変更できませんでした');
+    postShiftSystemList();
+  }
+}
+
+/**
+ * 当番制度に指定可能なキーワード一覧を投稿します.
+ */
+function postShiftSystemList() {
+  var message = '';
+  for(key in shiftSystems) {
+    message += key + '(' + shiftSystems[key] + ')\n';
+  }
+
+  postMessage('当番制度のキーワードは以下の通りです\n' + message);
+}
+
+/**
  * リクエスト内容不足のメッセージを投稿します.
  */
 function postTooFewArgumentsError() {
@@ -111,6 +138,7 @@ function postHelpMessage(trigger) {
     trigger + ' delete duty 担当者A',
     trigger + ' set duty 担当者A 2000/01/01',
     trigger + ' list duty',
+    trigger + ' set shift daily',
     trigger + ' help'
   ];
   postMessage(
