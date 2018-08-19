@@ -57,7 +57,11 @@ function postDutyList() {
  * @param {string} person 担当者
  */
 function postDutyPerson(date, person) {
-  postMessage(getYmdString(date) + ' の当番は ' + person + ' さんです')
+  if(person){
+    postMessage(getYmdString(date) + ' の当番は ' + person + ' さんです');
+  }else{
+    postMessage('担当者が設定されていません');
+  }
 }
 
 /**
