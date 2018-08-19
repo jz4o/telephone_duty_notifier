@@ -46,6 +46,8 @@ function relayRequest(e) {
     postDutyList();
   }else if(action == 'set' && type == 'shift') {
     changeShiftSystem(target);
+  }else if(action == 'list' && type == 'shift') {
+    postShiftSystemList();
   }else{
     postHelpMessage(trigger);
   }

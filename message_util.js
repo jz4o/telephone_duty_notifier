@@ -139,6 +139,7 @@ function postHelpMessage(trigger) {
     trigger + ' set duty 担当者A 2000/01/01',
     trigger + ' list duty',
     trigger + ' set shift daily',
+    trigger + ' list shift',
     trigger + ' help'
   ];
   postMessage(
