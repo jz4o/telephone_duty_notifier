@@ -43,7 +43,7 @@ function postDeleteDutyPerson(person, result) {
  * 担当者一覧を投稿します.
  */
 function postDutyList() {
-  var message = '現在の担当者は以下の方々です\n'
+  var message = '現在の担当者は以下の通りです。\n'
   persons.forEach(function(element){
     message += '> ' + element + '\n'
   });
@@ -58,9 +58,9 @@ function postDutyList() {
  */
 function postDutyPerson(date, person) {
   if(person){
-    postMessage(getYmdString(date) + ' の当番は ' + person + ' さんです');
+    postMessage(getYmdString(date) + ' の当番は ' + person + ' さんです。');
   }else{
-    postMessage('担当者が設定されていません');
+    postMessage('担当者が設定されていません。');
   }
 }
 
@@ -70,7 +70,7 @@ function postDutyPerson(date, person) {
  * @param {string} message 交代設定内容
  */
 function postChangeDutyPerson(message) {
-  postMessage("■電話当番交代を設定しました\n" + message);
+  postMessage("電話当番交代を設定しました。\n" + message);
 }
 
 /**
@@ -86,7 +86,7 @@ function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
   return(
     getYmdString(date) + ' の当番を '
       + beforeDutyPerson + ' さんから '
-      + afterDutyPerson  + ' さんに変更しました'
+      + afterDutyPerson  + ' さんに変更しました。'
   );
 }
 
@@ -98,9 +98,9 @@ function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
  */
 function postChangeShiftSystem(shift, result) {
   if(result){
-    postMessage('当番制度を' + shift + 'に変更しました');
+    postMessage('当番制度を' + shift + 'に変更しました。');
   }else {
-    postMessage('当番制度を変更できませんでした');
+    postMessage('当番制度を変更できませんでした。');
     postShiftSystemList();
   }
 }
@@ -114,21 +114,21 @@ function postShiftSystemList() {
     message += key + '(' + shiftSystems[key] + ')\n';
   }
 
-  postMessage('当番制度のキーワードは以下の通りです\n' + message);
+  postMessage('当番制度のキーワードは以下の通りです。\n' + message);
 }
 
 /**
  * リクエスト内容不足のメッセージを投稿します.
  */
 function postTooFewArgumentsError() {
-  postMessage('入力内容が不足しています');
+  postMessage('入力内容が不足しています。');
 }
 
 /**
  * リクエストに含まれる日付が正しくないメッセージを投稿します.
  */
 function postInvalidDate() {
-  postMessage('入力された日付が正しくありません');
+  postMessage('入力された日付が正しくありません。');
 }
 
 /**
