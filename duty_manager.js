@@ -76,9 +76,24 @@ function deleteDutyPerson(person) {
 /**
  * 該当日の担当者を通知
  *
- * @param {date} date 該当日
+ * @param {date / string} date 該当日
  */
 function noticeDutyPerson(date) {
+  // 引数チェック
+  if(!date){
+    postTooFewArgumentsError();
+    return;
+  }
+
+  // 日付チェック
+  var dateInt = Date.parse(date);
+  if(!dateInt){
+    postInvalidDate();
+    return;
+  }
+
+  date = new Date(dateInt);
+
   var dutyPerson = getChangeDutyPerson(date) || getOriginalDutyPerson(date);
   postDutyPerson(date, dutyPerson);
 }

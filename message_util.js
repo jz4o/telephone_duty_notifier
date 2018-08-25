@@ -142,6 +142,7 @@ function postHelpMessage(trigger) {
     trigger + ' delete duty 担当者A',
     trigger + ' set duty 担当者A 2000/01/01',
     trigger + ' list duty',
+    trigger + ' check duty person 2000/01/01',
     trigger + ' set shift daily',
     trigger + ' list shift',
     trigger + ' help'

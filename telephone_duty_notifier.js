@@ -44,6 +44,8 @@ function relayRequest(e) {
     deleteDutyPerson(target);
   }else if(action == 'list' && type == 'duty') {
     postDutyList();
+  }else if(action == 'check' && type == 'duty' && target == 'person') {
+    noticeDutyPerson(date);
   }else if(action == 'set' && type == 'shift') {
     changeShiftSystem(target);
   }else if(action == 'list' && type == 'shift') {
