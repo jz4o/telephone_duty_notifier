@@ -86,13 +86,12 @@ function noticeDutyPerson(date) {
   }
 
   // 日付チェック
-  var dateInt = Date.parse(date);
-  if(!dateInt){
+  if(typeof(date) === 'string' && !isValidDate(date)){
     postInvalidDate();
     return;
   }
 
-  date = new Date(dateInt);
+  date = new Date(date);
 
   var dutyPerson = getChangeDutyPerson(date) || getOriginalDutyPerson(date);
   postDutyPerson(date, dutyPerson);
