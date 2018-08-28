@@ -186,13 +186,13 @@ function setChangeDuty(person, date) {
   if(getChangeDutyPerson(date)){
     // 交代設定通知
     var beforeDutyPerson = getChangeDutyPerson(date);
-    postChangeDutyPerson(getChangeDutyPersonMessage(date, beforeDutyPerson, person));
+    postChangeDutyPerson(date, beforeDutyPerson, person);
 
     editChangeDutyPerson(date, person);
   }else{
     // 交代設定通知
     var beforeDutyPerson = getOriginalDutyPerson(date);
-    postChangeDutyPerson(getChangeDutyPersonMessage(date, beforeDutyPerson, person));
+    postChangeDutyPerson(date, beforeDutyPerson, person);
 
     addChangeDutyPerson(date, person);
   }

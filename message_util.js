@@ -67,23 +67,12 @@ function postDutyPerson(date, person) {
 /**
  * 担当者の交代を投稿します.
  *
- * @param {string} message 交代設定内容
- */
-function postChangeDutyPerson(message) {
-  postMessage("電話当番交代を設定しました。\n" + message);
-}
-
-/**
- * 担当者の交代通知用のメッセージを返却します.
- *
- * @param {date} date 該当日
+ * @param {date}   date             該当日
  * @param {string} beforeDutyPerson 交代前の担当者
  * @param {string} afterDutyPerson  交代後の担当者
- *
- * @return {string} 交代通知メッセージ
  */
-function getChangeDutyPersonMessage(date, beforeDutyPerson, afterDutyPerson) {
-  return(
+function postChangeDutyPerson(date, beforeDutyPerson, afterDutyPerson) {
+  postMessage(
     getYmdString(date) + ' の当番を '
       + beforeDutyPerson + ' さんから '
       + afterDutyPerson  + ' さんに変更しました。'
