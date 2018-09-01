@@ -103,7 +103,7 @@ function noticeDutyPerson(date) {
  * @param {date} date 該当日
  */
 function getOriginalDutyPerson(date) {
-  switch(shiftSystem){
+  switch(config['shift']){
   case shiftSystems['daily']:
     return getDailyDutyPerson(date);
   case shiftSystems['weekly']:
