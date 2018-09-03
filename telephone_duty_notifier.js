@@ -33,19 +33,19 @@ function doPost(e) {
  * @param {hash} e リクエストパラメータ
  */
 function relayRequest(e) {
-  var trigger, action, type, target, date;
-  [trigger, action, type, target, date] = e['text'].split(' ');
+  var trigger, action, type, target, opt;
+  [trigger, action, type, target, opt] = e['text'].split(' ');
 
   if(action == 'set' && type == 'duty') {
-    setChangeDuty(target, date);
+    setChangeDuty(target, opt);
   }else if(action == 'add' && type == 'duty') {
     addDutyPerson(target);
   }else if(action == 'delete' && type == 'duty') {
     deleteDutyPerson(target);
   }else if(action == 'list' && type == 'duty') {
     postDutyList();
-  }else if(action == 'check' && type == 'duty' && target == 'person') {
-    noticeDutyPerson(date);
+  }else if(action == 'check' && type == 'duty') {
+    noticeDutyPerson(target);
   }else if(action == 'set' && type == 'shift') {
     changeShiftSystem(target);
   }else if(action == 'list' && type == 'shift') {
