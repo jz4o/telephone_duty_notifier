@@ -74,6 +74,20 @@ function deleteDutyPerson(person) {
 }
 
 /**
+ * 担当者をリセット
+ */
+function resetDutyPerson() {
+  persons = [];
+
+  var lastRow = sheet['duties'].getLastRow();
+  if (lastRow > 1) {
+    sheet['duties'].getRange(2, 1, lastRow - 1).clear();
+  }
+
+  postResetDutyPerson();
+}
+
+/**
  * 該当日の担当者を通知
  *
  * @param {date / string} date 該当日

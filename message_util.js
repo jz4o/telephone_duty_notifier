@@ -40,13 +40,26 @@ function postDeleteDutyPerson(person, result) {
 }
 
 /**
+ * 担当者リセットのメッセージを投稿します.
+ */
+function postResetDutyPerson() {
+  postMessage('担当者をリセットしました。');
+  postDutyList();
+}
+
+/**
  * 担当者一覧を投稿します.
  */
 function postDutyList() {
-  var message = '現在の担当者は以下の通りです。\n'
-  persons.forEach(function(element){
-    message += '> ' + element + '\n'
-  });
+  var message;
+  if (persons.length > 0) {
+    message = '現在の担当者は以下の通りです。\n'
+    persons.forEach(function(element){
+      message += '> ' + element + '\n'
+    });
+  } else {
+    message = '現在、担当者が設定されていません。';
+  }
   postMessage(message);
 }
 
@@ -129,6 +142,7 @@ function postHelpMessage(trigger) {
   var commands = [
     trigger + ' add duty 担当者A',
     trigger + ' delete duty 担当者A',
+    trigger + ' reset duty',
     trigger + ' set duty 担当者A 2000/01/01',
     trigger + ' list duty',
     trigger + ' check duty 2000/01/01',

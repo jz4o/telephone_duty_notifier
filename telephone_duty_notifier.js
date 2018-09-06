@@ -42,6 +42,8 @@ function relayRequest(e) {
     addDutyPerson(target);
   }else if(action == 'delete' && type == 'duty') {
     deleteDutyPerson(target);
+  }else if(action == 'reset' && type == 'duty') {
+    resetDutyPerson();
   }else if(action == 'list' && type == 'duty') {
     postDutyList();
   }else if(action == 'check' && type == 'duty') {
