@@ -36,16 +36,16 @@ function relayRequest(e) {
   var trigger, action, type, target, opt;
   [trigger, action, type, target, opt] = e['text'].split(' ');
 
-  if(action == 'set' && type == 'duty') {
-    setChangeDuty(target, opt);
-  }else if(action == 'add' && type == 'duty') {
+  if(action == 'add' && type == 'duty') {
     addDutyPerson(target);
   }else if(action == 'delete' && type == 'duty') {
     deleteDutyPerson(target);
-  }else if(action == 'reset' && type == 'duty') {
-    resetDutyPerson();
   }else if(action == 'list' && type == 'duty') {
     postDutyList();
+  }else if(action == 'reset' && type == 'duty') {
+    resetDutyPerson();
+  }else if(action == 'set' && type == 'duty') {
+    setChangeDuty(target, opt);
   }else if(action == 'check' && type == 'duty') {
     noticeDutyPerson(target);
   }else if(action == 'set' && type == 'shift') {
