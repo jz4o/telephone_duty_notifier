@@ -12,7 +12,7 @@ var slack = {
 };
 
 /**
- * Splead Sheet
+ * Spread Sheet関連
  */
 var spreadSheet = SpreadsheetApp.getActiveSpreadsheet();
 var sheet = {
