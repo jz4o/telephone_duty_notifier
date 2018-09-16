@@ -4,6 +4,10 @@
 var persons = (function() {
   var result = [];
 
+  if(!sheet['duties']){
+    setup_sheets();
+  }
+
   values = sheet['duties'].getDataRange().getValues();
   for (var i=1; i<values.length; i++){
     result.push(values[i][sheetColumns['duties']['person']]);
@@ -17,6 +21,10 @@ var persons = (function() {
  */
 var changePersons = (function() {
   var result = {};
+
+  if(!sheet['changes']){
+    setup_sheets();
+  }
 
   values = sheet['changes'].getDataRange().getValues();
   for(var i=1; i<values.length; i++){

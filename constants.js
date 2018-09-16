@@ -20,6 +20,11 @@ var sheet = {
   'changes': spreadSheet.getSheetByName('changes'),
   'config' : spreadSheet.getSheetByName('config')
 };
+var sheetTitleRows = {
+  'duties' : ['担当者'],
+  'changes': ['日付', '担当者'],
+  'config' : ['項目名', '設定値']
+};
 var sheetColumns = {
   'duties': {
     'person': 0
@@ -42,6 +47,10 @@ var config = (function() {
 
   var keyColumn   = sheetColumns['config']['key'];
   var valueColumn = sheetColumns['config']['value'];
+
+  if(!sheet['config']) {
+    setup_sheets();
+  }
 
   var values = sheet['config'].getDataRange().getValues();
   for(var i=1; i<values.length; i++) {
