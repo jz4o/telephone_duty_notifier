@@ -145,6 +145,7 @@ function postHelpMessage(trigger) {
     trigger + ' list duty',
     trigger + ' reset duty',
     trigger + ' set duty 担当者A 2000/01/01',
+    trigger + ' rotate duty 担当者A 2000/01/01',
     trigger + ' check duty 2000/01/01',
     trigger + ' set shift daily',
     trigger + ' list shift',

@@ -270,3 +270,53 @@ function removeOldChangeDutyPerson() {
   ranges.setValues(values);
 }
 
+/**
+ * `date` の担当者が `person` となるよう担当者テーブルを循環
+ *
+ * @param {string} person 担当者
+ * @param {string} date   日付文字列
+ */
+function rotateDutyPerson(person, date) {
+  // 引数チェック
+  if(!person || !date){
+    postTooFewArgumentsError();
+    return;
+  }
+
+  // 担当者チェック
+  var personIndex = persons.indexOf(person);
+  if(personIndex < 0){
+    return;
+  }
+
+  // 日付チェック
+  if(!isValidDate(date)){
+    postInvalidDate();
+    return;
+  }
+
+  // 循環数
+  date = new Date(Date.parse(date));
+  var originalPersonIndex = persons.indexOf(getOriginalDutyPerson(date));
+  var rotateCount = originalPersonIndex - personIndex;
+
+  // 循環
+  if (rotateCount > 0) {
+    for (i = 0; i < rotateCount; i++) {
+      persons.unshift(persons.pop());
+    }
+  } else {
+    rotateCount = -rotateCount;
+    for (i = 0; i < rotateCount; i++) {
+      persons.push(persons.shift());
+    }
+  }
+
+  // シート更新
+  var data = []
+  for (i = 0; i < persons.length; i++) {
+    data.push([persons[i]]);
+  }
+  var personColumn = sheetColumns['duties']['person'] + 1;
+  sheet['duties'].getRange(2, personColumn, data.length).setValues(data);
+}

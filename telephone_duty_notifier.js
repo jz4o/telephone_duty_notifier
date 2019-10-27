@@ -46,6 +46,8 @@ function relayRequest(e) {
     resetDutyPerson();
   }else if(action == 'set' && type == 'duty') {
     setChangeDuty(target, opt);
+  }else if(action == 'rotate' && type == 'duty') {
+    rotateDutyPerson(target, opt);
   }else if(action == 'check' && type == 'duty') {
     noticeDutyPerson(target);
   }else if(action == 'set' && type == 'shift') {
