@@ -4,6 +4,7 @@
 function setup() {
   setup_sheets();
   updateConfig('shift', shiftSystems['daily']);
+  updateConfig('service', serviceStatus['active']);
 }
 
 /**

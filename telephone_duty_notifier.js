@@ -9,6 +9,11 @@ function main() {
     return;
   }
 
+  // 実行状態が「起動」でない場合は通知しない
+  if (config['service'] != serviceStatus['active']) {
+    return;
+  }
+
   // 該当日の担当者を通知
   noticeDutyPerson(today);
 }
@@ -54,6 +59,8 @@ function relayRequest(e) {
     changeShiftSystem(target);
   }else if(action == 'list' && type == 'shift') {
     postShiftSystemList();
+  }else if(type == 'service') {
+    changeServiceStatus(action, trigger);
   }else{
     postHelpMessage(trigger);
   }

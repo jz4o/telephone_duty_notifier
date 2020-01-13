@@ -61,6 +61,14 @@ var config = (function() {
 }());
 
 /**
+ * 実行状態
+ */
+var serviceStatus = {
+  'active'  : '起動',
+  'deactive': '停止'
+}
+
+/**
  * 当番制度
  */
 var shiftSystems =　{

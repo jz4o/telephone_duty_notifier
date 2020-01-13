@@ -120,6 +120,13 @@ function postShiftSystemList() {
 }
 
 /**
+ * 通知処理の状態を投稿します.
+ */
+function postServiceStatus(status) {
+  postMessage('処理は ' + status + ' しています。');
+}
+
+/**
  * リクエスト内容不足のメッセージを投稿します.
  */
 function postTooFewArgumentsError() {
@@ -149,6 +156,9 @@ function postHelpMessage(trigger) {
     trigger + ' check duty 2000/01/01',
     trigger + ' set shift daily',
     trigger + ' list shift',
+    trigger + ' start service',
+    trigger + ' stop service',
+    trigger + ' status service',
     trigger + ' help'
   ];
   postMessage(

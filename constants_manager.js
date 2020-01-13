@@ -13,6 +13,30 @@ function changeShiftSystem(shift) {
 }
 
 /**
+ * 実行状態を変更
+ *
+ * @param {String} action  キーワード
+ * @param {String} trigger Slack の Outgoing WebHooks の Trigger Word
+ */
+function changeServiceStatus(action, trigger) {
+  switch (action) {
+    case 'start':
+      config['service'] = serviceStatus['active'];
+      break;
+    case 'stop':
+      config['service'] = serviceStatus['deactive'];
+      break;
+    case 'status':
+      postServiceStatus(config['service']);
+      break;
+    default:
+      postHelpMessage(trigger);
+  }
+
+  updateConfig('service', config['service']);
+}
+
+/**
  * 設定値を更新
  *
  * @param {string} key   項目名
